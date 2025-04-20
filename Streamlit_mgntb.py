@@ -1,15 +1,29 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import requests
+
+# Access the token securely
+token = st.secrets["github"]["token"]
+
+url = "https://github.com/SausanCantik/data/blob/main/lpdp_awardee_ntb.csv"
+headers = {
+    "Authorization": f"token {token}",
+    "Accept": "application/vnd.github.v3.raw"
+}
+
+response = requests.get(url, headers=headers)
+df = pd.read_csv(pd.compat.StringIO(response.text))
+st.dataframe(df)
 
 # Load dataset
-@st.cache_data
-def load_data():
-    df = pd.read_csv("lpdp_awardee_ntb.csv")
-    df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
-    return df
+#@st.cache_data
+#def load_data():
+#    df = pd.read_csv("lpdp_awardee_ntb.csv")
+#    df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
+#    return df
 
-df = load_data()
+#df = load_data()
 
 st.title("📊 LPDP NTB Awardee Dashboard")
 
