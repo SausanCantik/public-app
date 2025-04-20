@@ -2,19 +2,37 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import requests
+from io import StringIO
 
-# Access the token securely
+O
+
+# Load token from Streamlit secrets
 token = st.secrets["github"]["token"]
 
-url = "https://github.com/SausanCantik/data/blob/main/lpdp_awardee_ntb.csv"
+# Replace with your info
+SausanCantik-username"dataivate-repo"
+filpdp_awardee_ntb.csvpo/data.csv"  # e.g., "data/myfile.csv"
+
+# GitHub API URL
+url = f"https://api.github.com/repos/{owner}/{repo}/contents/{file_path}"
+
+# API headers
 headers = {
     "Authorization": f"token {token}",
     "Accept": "application/vnd.github.v3.raw"
 }
 
+# Get file
 response = requests.get(url, headers=headers)
-df = pd.read_csv(pd.compat.StringIO(response.text))
-st.dataframe(df)
+
+if response.status_code == 200:
+    csv_content = response.text
+    df = pd.read_csv(StringIO(csv_content))
+    st.success("CSV loaded from private repo!")
+    st.dataframe(df)
+else:
+    st.error(f"Failed to fetch file: {response.status_code}")
+
 
 # Load dataset
 #@st.cache_data
