@@ -40,7 +40,7 @@ def load_data():
     df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
     return df
 
-df = load_data(df)
+df = load_data()
 
 st.title("📊 LPDP NTB Awardee Dashboard")
 
