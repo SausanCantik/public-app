@@ -4,15 +4,14 @@ import plotly.express as px
 import requests
 from io import StringIO
 
-O
 
 # Load token from Streamlit secrets
 token = st.secrets["github"]["token"]
 
-# Replace with your info
-SausanCantik-username"dataivate-repo"
-filpdp_awardee_ntb.csvp
-yfile.csv"
+# Github connection info
+owner = "SausanCantik"
+repo = "data"
+file_path = "lpdp_awardee_ntb.csv"
 
 # GitHub API URL
 url = f"https://api.github.com/repos/{owner}/{repo}/contents/{file_path}"
