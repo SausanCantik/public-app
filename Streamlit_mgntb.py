@@ -34,13 +34,13 @@ else:
 
 
 # Load dataset
-#@st.cache_data
-#def load_data():
-#    df = pd.read_csv("lpdp_awardee_ntb.csv")
-#    df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
-#    return df
+@st.cache_data
+def load_data():
+    df = pd.read_csv(StringIO(csv_content))
+    df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
+    return df
 
-#df = load_data()
+df = load_data(df)
 
 st.title("📊 LPDP NTB Awardee Dashboard")
 
