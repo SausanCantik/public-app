@@ -4,8 +4,6 @@ import plotly.express as px
 import requests
 from io import StringIO
 
-O
-
 # Load token from Streamlit secrets
 token = st.secrets["github"]["token"]
 
