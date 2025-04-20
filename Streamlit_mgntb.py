@@ -28,8 +28,7 @@ response = requests.get(url, headers=headers)
 if response.status_code == 200:
     csv_content = response.text
     df = pd.read_csv(StringIO(csv_content))
-    st.success("CSV loaded from private repo!")
-    st.dataframe(df)
+    
 else:
     st.error(f"Failed to fetch file: {response.status_code}")
 
